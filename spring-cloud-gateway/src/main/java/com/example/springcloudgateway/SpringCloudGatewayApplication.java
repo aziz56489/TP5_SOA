@@ -14,13 +14,9 @@ public class SpringCloudGatewayApplication {
     }
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
-        /*return builder.routes()
-                .route(r->r.path("/customers/**").uri("http://localhost:8080/").id("r1"))
-                .route(r->r.path("/products/**").uri("http://localhost:8081/").id("r2"))
-                .build();*/
         return builder.routes()
-                .route( "r1",r->r.path("/customers/**").uri("lb://CUSTOMER-SERVICE"))
-                .route("r2",r->r.path("/products/**").uri("lb://INVENTORY-SERVICE"))
+                .route("r1",r->r.path("/customers/**").uri("http://localhost:8080/"))
+                .route("r2",r->r.path("/products/**").uri("http://localhost:8081/"))
                 .build();
 
     }
